@@ -14,7 +14,9 @@ if fc.get_id() == 'intel-cl'
    add_project_arguments('/fpp', language: 'fortran')
 endif
 
+install = true
 if meson.is_subproject()
+  install = false
   quiet = fc.first_supported_argument(['-w', '-nowarn', '/nowarn'])
   add_project_arguments(quiet, language: 'fortran')
 endif
@@ -22,7 +24,7 @@ endif
 # --- BLAS
 subdir('BLAS/SRC')
 blas = library('blas', blas_sources,
-  install: true)
+  install: install)
 
 if arith.contains('d')
   blas_test_exe = executable('test_nrm2', 'TESTING/test_nrm2.f90',
@@ -38,7 +40,7 @@ if get_option('build_cblas')
   cblas_lib = library('cblas', cblas_sources,
     link_with : blas,
     include_directories : 'CBLAS/include',
-    install: true)
+    install: install)
   cblas = declare_dependency(link_with: [cblas_lib, blas], include_directories: 'CBLAS/include')
 endif
 
@@ -48,7 +50,7 @@ if get_option('build_lapack')
 
   lapack = library('lapack', lapack_sources,
     link_with : blas,
-    install: true)
+    install: lapack)
 
   # --- generate pkg-config
   pkg = import('pkgconfig')
@@ -70,6 +72,7 @@ if get_option('build_lapack')
       test('sGESV', test_sgesv, timeout: 15, suite: 'lapack')
     endif
   endif
+  lapack_dep = declare_dependency(link_with: lapack, include_directories: lapack.private_dir_include())
 endif
 
 ## LAPACKE
@@ -81,7 +84,7 @@ if get_option('build_lapacke')
     sources: [lapacke_sources, lapacke_utils],
 	  link_with : lapack,
 	  include_directories : 'LAPACKE/include',
-    install: true)
+    install: install)
 
   lapacke = declare_dependency(link_with: [lapacke_lib, lapack], include_directories: 'LAPACKE/include')
 endif

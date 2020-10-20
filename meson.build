@@ -50,7 +50,7 @@ if get_option('build_lapack')
 
   lapack = library('lapack', lapack_sources,
     link_with : blas,
-    install: lapack)
+    install: install)
 
   # --- generate pkg-config
   pkg = import('pkgconfig')

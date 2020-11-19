@@ -71,11 +71,11 @@ list(
   "blas-lib"
 )
 
-if("d" IN_LIST arith)
-  add_executable(test_nrm2 TESTING/test_nrm2.f90)
-  target_link_libraries(test_nrm2 blas)
-  add_test(NAME blasNRM2 COMMAND test_nrm2)
-endif()
+# if("d" IN_LIST arith)
+#   add_executable(test_nrm2 TESTING/test_nrm2.f90)
+#   target_link_libraries(test_nrm2 blas)
+#   add_test(NAME blasNRM2 COMMAND test_nrm2)
+# endif()
 
 # install(TARGETS blas
 # EXPORT LAPACKTargets
@@ -109,7 +109,7 @@ if(build_lapack)
   set(lapack_srcs)
   add_subdirectory(SRC)
   add_library(lapack-lib ${lapack_srcs})
-  target_link_libraries(lapack95-lib blas-lib)
+  target_link_libraries(lapack-lib blas-lib)
   add_library(lib-deps ALIAS lapack-lib)
 
   set_target_properties(

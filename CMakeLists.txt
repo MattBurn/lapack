@@ -77,10 +77,10 @@ if("d" IN_LIST arith)
   add_test(NAME blasNRM2 COMMAND test_nrm2)
 endif()
 
-install(TARGETS blas
-EXPORT LAPACKTargets
-ARCHIVE DESTINATION lib
-LIBRARY DESTINATION lib)
+# install(TARGETS blas
+# EXPORT LAPACKTargets
+# ARCHIVE DESTINATION lib
+# LIBRARY DESTINATION lib)
 
 # --- CBLAS
 # if(build_cblas)

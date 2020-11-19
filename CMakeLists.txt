@@ -6,7 +6,7 @@ project(LAPACK
 LANGUAGES C Fortran
 VERSION 3.9.0
 HOMEPAGE_URL "http://netlib.org/lapack")
-enable_testing()
+# enable_testing()
 
 option(build_cblas "Build CBLAS" false)
 option(build_lapack "Build LAPACK" true)
@@ -58,13 +58,18 @@ include(CheckFortranSourceCompiles)
 check_fortran_source_compiles("real :: x; x=norm2([0.]); end" f08_norm2 SRC_EXT f90)
 
 # --- BLAS
-add_library(blas)
-set_target_properties(
-  blas PROPERTIES
-  LINKER_LANGUAGE Fortran
-  VERSION ${LAPACK_VERSION}
-  )
-add_subdirectory(BLAS/SRC)
+# add_library(blas)
+# set_target_properties(
+#   blas PROPERTIES
+#   LINKER_LANGUAGE Fortran
+#   VERSION ${LAPACK_VERSION}
+#   )
+set(BUILD_SHARED_LIBS OFF)
+add_subdirectory(BLAS)
+list(
+  APPEND lib-deps
+  "blas-lib"
+)
 
 if("d" IN_LIST arith)
   add_executable(test_nrm2 TESTING/test_nrm2.f90)
@@ -101,32 +106,52 @@ endif()
 
 # --- LAPACK
 if(build_lapack)
-  add_library(lapack)
-  target_link_libraries(lapack PRIVATE blas)
-  set_target_properties(
-    lapack PROPERTIES
-    LINKER_LANGUAGE Fortran
-    VERSION ${LAPACK_VERSION}
-    )
+  set(lapack_srcs)
   add_subdirectory(SRC)
+  add_library(lapack-lib ${lapack_srcs})
+  add_library(lib-deps ALIAS lapack-lib)
 
-  ### test lapack
-  if(f08_norm2)
-    if("d" IN_LIST arith)
-      add_executable(test_dgesvd TESTING/test_dgesvd.f90)
-      target_link_libraries(test_dgesvd lapack)
-      add_test(NAME dGESV COMMAND test_dgesvd)
-    endif()
-    if("s" IN_LIST arith)
-      add_executable(test_sgesvd TESTING/test_sgesvd.f90)
-      target_link_libraries(test_sgesvd lapack)
-      add_test(NAME sGESV COMMAND test_sgesvd)
-    endif()
-  endif()
-  install(TARGETS lapack
-  EXPORT LAPACKTargets
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib)
+  set_target_properties(
+    lapack-lib
+    PROPERTIES
+    POSITION_INDEPENDENT_CODE TRUE
+    OUTPUT_NAME "${PROJECT_NAME}"
+    VERSION "${PROJECT_VERSION}"
+    SOVERSION "${PROJECT_VERSION_MAJOR}"
+    Fortran_MODULE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/include"
+  )
+  target_include_directories(
+    lapack-lib
+    INTERFACE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+  )
+  # add_library(lapack)
+  # target_link_libraries(lapack PRIVATE blas)
+  # set_target_properties(
+  #   lapack PROPERTIES
+  #   LINKER_LANGUAGE Fortran
+  #   VERSION ${LAPACK_VERSION}
+  #   )
+  # add_subdirectory(SRC)
+
+  # ### test lapack
+  # if(f08_norm2)
+  #   if("d" IN_LIST arith)
+  #     add_executable(test_dgesvd TESTING/test_dgesvd.f90)
+  #     target_link_libraries(test_dgesvd lapack)
+  #     add_test(NAME dGESV COMMAND test_dgesvd)
+  #   endif()
+  #   if("s" IN_LIST arith)
+  #     add_executable(test_sgesvd TESTING/test_sgesvd.f90)
+  #     target_link_libraries(test_sgesvd lapack)
+  #     add_test(NAME sGESV COMMAND test_sgesvd)
+  #   endif()
+  # endif()
+  # install(TARGETS lapack
+  # EXPORT LAPACKTargets
+  # ARCHIVE DESTINATION lib
+  # LIBRARY DESTINATION lib)
 endif()
 
 # --- LAPACKE

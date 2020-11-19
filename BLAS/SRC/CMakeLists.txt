@@ -28,58 +28,222 @@
 #---------------------------------------------------------
 #  Level 1 BLAS
 #---------------------------------------------------------
-set(SBLAS1 isamax.f sasum.f saxpy.f scopy.f sdot.f snrm2.f
-	srot.f srotg.f sscal.f sswap.f sdsdot.f srotmg.f srotm.f)
+set(SBLAS1 
+  "${dir}/isamax.f" 
+  "${dir}/sasum.f" 
+  "${dir}/saxpy.f" 
+  "${dir}/scopy.f" 
+  "${dir}/sdot.f" 
+  "${dir}/snrm2.f"
+  "${dir}/srot.f" 
+  "${dir}/srotg.f" 
+  "${dir}/sscal.f" 
+  "${dir}/sswap.f" 
+  "${dir}/sdsdot.f" 
+  "${dir}/srotmg.f" 
+  "${dir}/srotm.f"
+)
 
-set(CBLAS1 scabs1.f scasum.f scnrm2.f icamax.f caxpy.f ccopy.f
-	cdotc.f cdotu.f csscal.f crotg.f cscal.f cswap.f csrot.f)
+set(CBLAS1 
+  "${dir}/scabs1.f" 
+  "${dir}/scasum.f" 
+  "${dir}/scnrm2.f" 
+  "${dir}/icamax.f" 
+  "${dir}/caxpy.f" 
+  "${dir}/ccopy.f"
+  "${dir}/cdotc.f" 
+  "${dir}/cdotu.f" 
+  "${dir}/csscal.f" 
+  "${dir}/crotg.f" 
+  "${dir}/cscal.f" 
+  "${dir}/cswap.f" 
+  "${dir}/csrot.f"
+)
 
-set(DBLAS1 idamax.f dasum.f daxpy.f dcopy.f ddot.f dnrm2.f
-	drot.f drotg.f dscal.f dsdot.f dswap.f drotmg.f drotm.f)
+set(DBLAS1 
+  "${dir}/idamax.f" 
+  "${dir}/dasum.f" 
+  "${dir}/daxpy.f" 
+  "${dir}/dcopy.f" 
+  "${dir}/ddot.f" 
+  "${dir}/dnrm2.f"
+  "${dir}/drot.f" 
+  "${dir}/drotg.f" 
+  "${dir}/dscal.f" 
+  "${dir}/dsdot.f" 
+  "${dir}/dswap.f" 
+  "${dir}/drotmg.f" 
+  "${dir}/drotm.f"
+)
 
-set(ZBLAS1 dcabs1.f dzasum.f dznrm2.f izamax.f zaxpy.f zcopy.f
-	zdotc.f zdotu.f zdscal.f zrotg.f zscal.f zswap.f zdrot.f)
+set(ZBLAS1 
+  "${dir}/dcabs1.f" 
+  "${dir}/dzasum.f" 
+  "${dir}/dznrm2.f" 
+  "${dir}/izamax.f" 
+  "${dir}/zaxpy.f" 
+  "${dir}/zcopy.f"
+  "${dir}/zdotc.f" 
+  "${dir}/zdotu.f" 
+  "${dir}/zdscal.f" 
+  "${dir}/zrotg.f" 
+  "${dir}/zscal.f" 
+  "${dir}/zswap.f" 
+  "${dir}/zdrot.f"
+)
 
-set(CB1AUX isamax.f sasum.f saxpy.f scopy.f snrm2.f sscal.f)
+set(CB1AUX 
+  "${dir}/isamax.f" 
+  "${dir}/sasum.f" 
+  "${dir}/saxpy.f" 
+  "${dir}/scopy.f" 
+  "${dir}/snrm2.f" 
+  "${dir}/sscal.f"
+)
 
-set(ZB1AUX idamax.f dasum.f daxpy.f dcopy.f dnrm2.f dscal.f)
+set(ZB1AUX 
+  "${dir}/idamax.f" 
+  "${dir}/dasum.f" 
+  "${dir}/daxpy.f" 
+  "${dir}/dcopy.f" 
+  "${dir}/dnrm2.f" 
+  "${dir}/dscal.f"
+)
 
 #---------------------------------------------------------------------
 #  Auxiliary routines needed by both the Level 2 and Level 3 BLAS
 #---------------------------------------------------------------------
-set(ALLBLAS lsame.f xerbla.f xerbla_array.f)
+set(ALLBLAS 
+  "${dir}/lsame.f" 
+  "${dir}/xerbla.f" 
+  "${dir}/xerbla_array.f"
+)
 
 #---------------------------------------------------------
 #  Level 2 BLAS
 #---------------------------------------------------------
-set(SBLAS2 sgemv.f sgbmv.f ssymv.f ssbmv.f sspmv.f
-	strmv.f stbmv.f stpmv.f strsv.f stbsv.f stpsv.f
-	sger.f ssyr.f sspr.f ssyr2.f sspr2.f)
+set(SBLAS2 
+  "${dir}/sgemv.f" 
+  "${dir}/sgbmv.f" 
+  "${dir}/ssymv.f" 
+  "${dir}/ssbmv.f" 
+  "${dir}/sspmv.f"
+  "${dir}/strmv.f" 
+  "${dir}/stbmv.f" 
+  "${dir}/stpmv.f" 
+  "${dir}/strsv.f" 
+  "${dir}/stbsv.f" 
+  "${dir}/stpsv.f"
+  "${dir}/sger.f" 
+  "${dir}/ssyr.f" 
+  "${dir}/sspr.f" 
+  "${dir}/ssyr2.f" 
+  "${dir}/sspr2.f"
+)
 
-set(CBLAS2 cgemv.f cgbmv.f chemv.f chbmv.f chpmv.f
-	ctrmv.f ctbmv.f ctpmv.f ctrsv.f ctbsv.f ctpsv.f
-	cgerc.f cgeru.f cher.f chpr.f cher2.f chpr2.f)
+set(CBLAS2 
+  "${dir}/cgemv.f" 
+  "${dir}/cgbmv.f" 
+  "${dir}/chemv.f" 
+  "${dir}/chbmv.f" 
+  "${dir}/chpmv.f"
+  "${dir}/ctrmv.f" 
+  "${dir}/ctbmv.f" 
+  "${dir}/ctpmv.f" 
+  "${dir}/ctrsv.f" 
+  "${dir}/ctbsv.f" 
+  "${dir}/ctpsv.f"
+  "${dir}/cgerc.f" 
+  "${dir}/cgeru.f" 
+  "${dir}/cher.f" 
+  "${dir}/chpr.f" 
+  "${dir}/cher2.f"
+  "${dir}/chpr2.f"
+)
 
-set(DBLAS2 dgemv.f dgbmv.f dsymv.f dsbmv.f dspmv.f
-	dtrmv.f dtbmv.f dtpmv.f dtrsv.f dtbsv.f dtpsv.f
-	dger.f dsyr.f dspr.f dsyr2.f dspr2.f)
+set(DBLAS2 
+  "${dir}/dgemv.f" 
+  "${dir}/dgbmv.f" 
+  "${dir}/dsymv.f" 
+  "${dir}/dsbmv.f" 
+  "${dir}/dspmv.f"
+  "${dir}/dtrmv.f" 
+  "${dir}/dtbmv.f" 
+  "${dir}/dtpmv.f" 
+  "${dir}/dtrsv.f" 
+  "${dir}/dtbsv.f" 
+  "${dir}/dtpsv.f"
+  "${dir}/dger.f" 
+  "${dir}/dsyr.f" 
+  "${dir}/dspr.f" 
+  "${dir}/dsyr2.f" 
+  "${dir}/dspr2.f"
+)
 
-set(ZBLAS2 zgemv.f zgbmv.f zhemv.f zhbmv.f zhpmv.f
-	ztrmv.f ztbmv.f ztpmv.f ztrsv.f ztbsv.f ztpsv.f
-	zgerc.f zgeru.f zher.f zhpr.f zher2.f zhpr2.f)
+set(ZBLAS2 
+  "${dir}/zgemv.f" 
+  "${dir}/zgbmv.f" 
+  "${dir}/zhemv.f" 
+  "${dir}/zhbmv.f" 
+  "${dir}/zhpmv.f"
+  "${dir}/ztrmv.f" 
+  "${dir}/ztbmv.f" 
+  "${dir}/ztpmv.f" 
+  "${dir}/ztrsv.f" 
+  "${dir}/ztbsv.f" 
+  "${dir}/ztpsv.f"
+  "${dir}/zgerc.f" 
+  "${dir}/zgeru.f" 
+  "${dir}/zher.f" 
+  "${dir}/zhpr.f" 
+  "${dir}/zher2.f" 
+  "${dir}/zhpr2.f"
+)
 
 #---------------------------------------------------------
 #  Level 3 BLAS
 #---------------------------------------------------------
-set(SBLAS3 sgemm.f ssymm.f ssyrk.f ssyr2k.f strmm.f strsm.f)
+set(SBLAS3 
+  "${dir}/sgemm.f" 
+  "${dir}/ssymm.f" 
+  "${dir}/ssyrk.f" 
+  "${dir}/ssyr2k.f" 
+  "${dir}/strmm.f" 
+  "${dir}/strsm.f"
+)
 
-set(CBLAS3 cgemm.f csymm.f csyrk.f csyr2k.f ctrmm.f ctrsm.f
-	chemm.f cherk.f cher2k.f)
+set(CBLAS3 
+  "${dir}/cgemm.f" 
+  "${dir}/csymm.f" 
+  "${dir}/csyrk.f" 
+  "${dir}/csyr2k.f" 
+  "${dir}/ctrmm.f" 
+  "${dir}/ctrsm.f"
+  "${dir}/chemm.f" 
+  "${dir}/cherk.f" 
+  "${dir}/cher2k.f"
+)
 
-set(DBLAS3 dgemm.f dsymm.f dsyrk.f dsyr2k.f dtrmm.f dtrsm.f)
+set(DBLAS3 
+  "${dir}/dgemm.f" 
+  "${dir}/dsymm.f" 
+  "${dir}/dsyrk.f" 
+  "${dir}/dsyr2k.f" 
+  "${dir}/dtrmm.f" 
+  "${dir}/dtrsm.f"
+)
 
-set(ZBLAS3 zgemm.f zsymm.f zsyrk.f zsyr2k.f ztrmm.f ztrsm.f
-	zhemm.f zherk.f zher2k.f)
+set(ZBLAS3 
+  "${dir}/zgemm.f" 
+  "${dir}/zsymm.f" 
+  "${dir}/zsyrk.f" 
+  "${dir}/zsyr2k.f" 
+  "${dir}/ztrmm.f" 
+  "${dir}/ztrsm.f"
+  "${dir}/zhemm.f" 
+  "${dir}/zherk.f" 
+  "${dir}/zher2k.f"
+)
 
 
 set(SOURCES)
@@ -97,4 +261,4 @@ if("z" IN_LIST arith)
 endif()
 list(REMOVE_DUPLICATES SOURCES)
 
-target_sources(blas PRIVATE ${SOURCES})
+set(blas_srcs "${SOURCES}" PARENT_SCOPE)

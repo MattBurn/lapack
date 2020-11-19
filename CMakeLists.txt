@@ -109,6 +109,7 @@ if(build_lapack)
   set(lapack_srcs)
   add_subdirectory(SRC)
   add_library(lapack-lib ${lapack_srcs})
+  target_link_libraries(lapack95-lib blas-lib)
   add_library(lib-deps ALIAS lapack-lib)
 
   set_target_properties(

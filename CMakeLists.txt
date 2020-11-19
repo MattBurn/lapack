@@ -83,26 +83,26 @@ ARCHIVE DESTINATION lib
 LIBRARY DESTINATION lib)
 
 # --- CBLAS
-if(build_cblas)
-  add_library(cblas)
-  target_link_libraries(cblas PRIVATE blas)
-  set_target_properties(
-    cblas PROPERTIES
-    LINKER_LANGUAGE C
-    VERSION ${LAPACK_VERSION}
-    )
-  target_include_directories(cblas PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/CBLAS/include>
-    $<INSTALL_INTERFACE:include>
-  )
-  add_subdirectory(CBLAS/src)
+# if(build_cblas)
+#   add_library(cblas)
+#   target_link_libraries(cblas PRIVATE blas)
+#   set_target_properties(
+#     cblas PROPERTIES
+#     LINKER_LANGUAGE C
+#     VERSION ${LAPACK_VERSION}
+#     )
+#   target_include_directories(cblas PUBLIC
+#     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/CBLAS/include>
+#     $<INSTALL_INTERFACE:include>
+#   )
+#   add_subdirectory(CBLAS/src)
 
-  install(TARGETS cblas
-  EXPORT LAPACKTargets
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  INCLUDES DESTINATION include)
-endif()
+#   install(TARGETS cblas
+#   EXPORT LAPACKTargets
+#   ARCHIVE DESTINATION lib
+#   LIBRARY DESTINATION lib
+#   INCLUDES DESTINATION include)
+# endif()
 
 # --- LAPACK
 if(build_lapack)
@@ -155,24 +155,24 @@ if(build_lapack)
 endif()
 
 # --- LAPACKE
-if(build_lapacke)
-  add_library(lapacke)
-  target_link_libraries(lapacke PRIVATE lapack)
-  set_target_properties(
-    lapacke PROPERTIES
-    LINKER_LANGUAGE C
-    VERSION ${LAPACK_VERSION}
-    )
-  target_include_directories(lapacke PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/LAPACKE/include>
-    $<INSTALL_INTERFACE:include>
-  )
-  add_subdirectory(LAPACKE/src)
-  add_subdirectory(LAPACKE/utils)
+# if(build_lapacke)
+#   add_library(lapacke)
+#   target_link_libraries(lapacke PRIVATE lapack)
+#   set_target_properties(
+#     lapacke PROPERTIES
+#     LINKER_LANGUAGE C
+#     VERSION ${LAPACK_VERSION}
+#     )
+#   target_include_directories(lapacke PUBLIC
+#     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/LAPACKE/include>
+#     $<INSTALL_INTERFACE:include>
+#   )
+#   add_subdirectory(LAPACKE/src)
+#   add_subdirectory(LAPACKE/utils)
 
-  install(TARGETS lapacke
-  EXPORT LAPACKTargets
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  INCLUDES DESTINATION include)
-endif()
+#   install(TARGETS lapacke
+#   EXPORT LAPACKTargets
+#   ARCHIVE DESTINATION lib
+#   LIBRARY DESTINATION lib
+#   INCLUDES DESTINATION include)
+# endif()
